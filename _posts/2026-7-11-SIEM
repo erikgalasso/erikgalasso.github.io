@@ -1,1 +1,28 @@
 
+---
+layout: test
+title: Security+
+---
+
+So today I'm going to get started setting up a SIEM in a virtual machine. Unfortunately, I won't be able to use the Kali Linux VM that I set up which I mentioned 
+in a previous post. The computer I had at the time bricked, and my new one has Windows 11 Home. The Home version doesn't support Hyper-V, so this time I'm going to 
+try VMware. Looks like you have to create an account with Broadcom to download it.
+
+I'll download VMware Workstation Pro 26H1 for Windows. It didn't take long to download, but when I started the installation, it said "The installer detected that 
+the host has Hyper-V or Device/Credential Guard enabled, so virtual machines will be run using Windows Hypervisor Platform. Nested virtualization will not be 
+available." Hopefully that won't be a major problem.
+
+Now I'll download a Wazuh virtual machine image. It's in the OVA format. It's a larger file size at about four gigs. Now I just need to click File and Open in the 
+VMware Workstation window. I'm confirming that in the settings for the VM, the Network Adapter setting is set to Bridged.
+
+Okay, so I tried booting up the VM, and it appeared to be working at first, but I got an error message that "The CPU has been disabled by the guest operating system. 
+Power off or reset the virtual machine." Just restarting it gives me the same issue. I'll try adjusting the settings for the VM from 4 processors to 2, and 8 GB 
+memory to 4 GB. That got rid of the error message when starting it up, but now it's just stuck on the Wazuh splash screen.
+
+After doing some research, it seems my laptop with its 8 GB of RAM isn't equipped to handle the virtual machine I was trying to run. I'm going to have to try 
+something else. I'll switch to my gaming laptop that has 16 GB of RAM, but maybe I'll be okay sending the simulated attack from my work laptop.
+
+The default settings for the VM seem to work fine! I logged in to the Wazuh server, ran ifconfig, entered the IP in my web browser, and logged in to the Wazuh 
+dashboard. So it seems I have an operational SIEM.
+
+I'm going to stop there. A good next step would be simulating an attack and seeing how the setup handles it, but this should be enough for one blog post for now.
